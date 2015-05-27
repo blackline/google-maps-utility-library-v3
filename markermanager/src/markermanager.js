@@ -767,13 +767,14 @@ MarkerManager.prototype.notifyListeners_ = function () {
  * @param {Function} callback The function to call for each marker.
  */
 MarkerManager.prototype.processAll_ = function (bounds, callback) {
-  for (var x = bounds.minX; x <= bounds.maxX; x++) {
-    for (var y = bounds.minY; y <= bounds.maxY; y++) {
-      this.processCellMarkers_(x, y,  bounds.z, callback);
+    if (!_.isUndefined(bounds)) {
+        for (var x = bounds.minX; x <= bounds.maxX; x++) {
+            for (var y = bounds.minY; y <= bounds.maxY; y++) {
+              this.processCellMarkers_(x, y,  bounds.z, callback);
+            }
+        }
     }
-  }
 };
-
 
 /**
  * Process all markers in the grid cell, using a callback.
